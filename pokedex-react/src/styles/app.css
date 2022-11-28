@@ -1,0 +1,17 @@
+.app{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.app h1{
+    font-size:50px;
+    margin:10px;
+}
+
+.container-pokemon{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+

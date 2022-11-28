@@ -1,6 +1,6 @@
 function convertPokemonToLi(pokemon){
-    console.log(pokemon)
     return `
+    
         <li class="pokemon ${pokemon.type}">
             
             <h2 class="name">${pokemon.name}</h2>
@@ -12,8 +12,9 @@ function convertPokemonToLi(pokemon){
                 </ol>
                 <img class="photo" src=${pokemon.photo} alt=${pokemon.name}/>
             </div>
-
+            
         </li>
+    
     `
 }
 

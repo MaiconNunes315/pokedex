@@ -11,6 +11,10 @@ h1{
     text-align:center;
 }
 
+a{
+    text-decoration: none;
+}
+
 .pokemons{
     display:flex;
     flex-wrap:wrap;
