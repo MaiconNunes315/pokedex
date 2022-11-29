@@ -15,3 +15,24 @@
     justify-content:center;
 }
 
+.button{
+    width:70px;
+    height:30px;
+    margin:5px;
+    font-size:15px;
+    font-weight:bold;
+    border-color:transparent;
+    border-radius:5px;
+    background-color:#cac1cc;
+    cursor:pointer;
+    transition: background-color 1s;
+}
+
+.button:hover{
+    background-color:transparent;
+}
+
+.button:disabled{
+    display:none;
+}
+

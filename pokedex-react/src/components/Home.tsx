@@ -1,5 +1,6 @@
 import "../styles/main.css"
 
+
 type HomeProps = {
   name: string
   types: []
@@ -32,7 +33,7 @@ export default function Home({ name, types, image }:HomeProps) {
         </div>
               
         </div>
-
+                
     </div>
   )
 }

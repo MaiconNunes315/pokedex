@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import Home from './components/Home'
 import "./styles/app.css"
+import axios from 'axios'
 
 type PokemonType = {
   url:string
@@ -16,7 +17,6 @@ type PokemonDetailType = {
 }
 
 
-
 function App() {
 
   const [pokemon, setPokemon] = useState<PokemonType[]>([])
@@ -24,20 +24,22 @@ function App() {
   const [isLoad, setIsLoad] = useState(false) 
   const [offsetState, setOffsetState] = useState(0)
 
+
+
   useEffect(() => {
 
     async function returnPokemons() {
 
       let pokemonDetail:PokemonDetailType[] = []
 
-      const searchPokemonList = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offsetState}&limit=${30}`)
-      const resultPokemonList = await searchPokemonList.json()
-      
+      const searchPokemonList = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offsetState}&limit=${30}`)
+      const resultPokemonList = searchPokemonList.data
+
       setPokemon(resultPokemonList.results)
       
       const searchDetailPokemon = pokemon.map(async pokemonDetail => {
-        const searchDataPokemonDetail = await fetch(pokemonDetail.url)
-        const resDataPokemonDetail = searchDataPokemonDetail.json()
+        const searchDataPokemonDetail = await axios.get(pokemonDetail.url)
+        const resDataPokemonDetail = searchDataPokemonDetail.data
         return resDataPokemonDetail
       })
 
@@ -61,24 +63,26 @@ function App() {
         
       })    
     }
-    returnPokemons()
-      
-      
-      
+    returnPokemons() 
   }, [isLoad, offsetState])
 
   
   
   function increment() {
+    setIsLoad(false)
     setOffsetState(offsetState + 30)
-    console.log(offsetState)
   }
+
+  function decrement() {
+    setIsLoad(false)
+    setOffsetState(offsetState - 30) 
+  }
+
 
   return (
 
-    <div className="app">
-
-      <h1>Pokedex</h1>
+        <div className="app">
+        <h1>Pokedex</h1>
 
       <div className='container-pokemon'>
 
@@ -102,22 +106,19 @@ function App() {
       
       <div>
 
-        <button onClick={
-          (e) => {
-            console.log(e)
-            setOffsetState(offsetState - 30)
-            console.log(offsetState)
-          }
-        }>
-          Antes
+        <button disabled={offsetState===0?true:false} onClick={decrement} className="button left">
+          Anterior
         </button>
 
-        <button onClick={increment}>
-          Depois
+        <button onClick={increment} className="button right">
+          Próximo
         </button>
       </div>
-    </div>
+        </div>
+        
   )
+        
+
 }
 
 export default App
