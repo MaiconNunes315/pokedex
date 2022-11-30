@@ -2,7 +2,7 @@
 
 🦀 São dois projetos. 1 utilizando apenas HTML, CSS, Javascript. E outra realizada com ReactJs e Typescript. Todos utilizando uma API Pokemon. 
 
-<a href="https://maiconnunes315.github.io/pokedex/"> Página em HTML, CSS, Javascript</a>
+<a href="https://maiconnunes315.github.io/pokedex/"> Página em HTML, CSS, Javascript</a><br/>
 <a href="https://poke-react-project.netlify.app/"/> Página em Reactjs</a>
   
 ## Download
