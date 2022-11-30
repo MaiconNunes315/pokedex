@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import Home from './components/Home'
 import "./styles/app.css"
 import axios from 'axios'
+import loading from './img/loading.svg'
 
 type PokemonType = {
   url:string
@@ -11,9 +12,7 @@ type PokemonDetailType = {
   name: string
   id: number
   photo: string
-  types:[]
-  
-  
+  types: [{type:{name:string}}]
 }
 
 
@@ -24,10 +23,9 @@ function App() {
   const [isLoad, setIsLoad] = useState(false) 
   const [offsetState, setOffsetState] = useState(0)
 
-
-
   useEffect(() => {
 
+    
     async function returnPokemons() {
 
       let pokemonDetail:PokemonDetailType[] = []
@@ -63,10 +61,11 @@ function App() {
         
       })    
     }
-    returnPokemons() 
-  }, [isLoad, offsetState])
 
-  
+      returnPokemons() 
+
+    
+  }, [isLoad, offsetState])
   
   function increment() {
     setIsLoad(false)
@@ -84,25 +83,25 @@ function App() {
         <div className="app">
         <h1>Pokedex</h1>
 
-      <div className='container-pokemon'>
+      
 
-      {isLoad === true ? (
+      {isLoad ? (
+        <div className={`container-pokemon`}>
 
-        pokemonDetail.map((pokemon) => (
-        
+          {pokemonDetail.map((pokemon, index) => (
           
-          <Home key={pokemon.id} name={pokemon.name} types={pokemon.types} image={pokemon.photo}/>
-          
-       ))
+            <Home key={pokemon.id} name={pokemon.name} type={pokemon.types} image={pokemon.photo} classType={pokemon.types[0].type.name} />
+      
+         
+          ))}
+        </div> 
       )
       :
       (
-        <div>
-          Carregando...
-        </div>
+        <div className='spinner'></div>
       )
        }  
-      </div>
+      
       
       <div>
 

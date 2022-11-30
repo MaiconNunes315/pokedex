@@ -3,11 +3,12 @@ import "../styles/main.css"
 
 type HomeProps = {
   name: string
-  types: []
-  image:string
+  type: [{type:{name:string}}]
+  image: string
+  classType: string
 }
 
-export default function Home({ name, types, image }:HomeProps) {
+export default function Home({ name, type, image, classType }:HomeProps) {
 
     
 
@@ -16,16 +17,17 @@ export default function Home({ name, types, image }:HomeProps) {
   return (
     <div className="container-main">
 
-        <div className='pokemons'>
+      <div className={`pokemons ${classType}`}>
               
           <h2 translate="no">{name}</h2>
               
           <div className='parts-pokemon'>
             
-            <div className='type-pokemon' >
+          <div className='type-pokemon' >
+          
   
-              {types.map((typer: { type: { name: string } }, index: number) => (
-                        <span translate='no' key={index}>{typer.type.name}</span> 
+              {type.map((types, index) => (
+                        <span translate='no' key={index}>{types.type.name}</span> 
               ))}
                        
             </div>  
